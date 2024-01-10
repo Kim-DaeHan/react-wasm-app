@@ -17,6 +17,7 @@ function App() {
         console.log("wasmModule: ", wasmModule.fibonacci(1));
         console.log("wasmModule: ", wasmModule.greet2("aaa"));
         const result = wasmModule.greet2("aaa");
+        wasmModule.greet("bbb");
         setGreetResult(result);
       } catch (error) {
         console.error("Error loading wasm module:", error);
