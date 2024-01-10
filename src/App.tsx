@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { greet2 } from "@kdh8281/wasm-lib";
+import init, { greet2 } from "@kdh8281/wasm-lib";
 
 function App() {
   const [wasm, setWasm] = useState<any>(null);
@@ -10,15 +10,17 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const wasmModule = await import("@kdh8281/wasm-lib");
-        await wasmModule.default();
-        setWasm(wasmModule);
-        console.log("wasmModule: ", wasmModule);
-        console.log("wasmModule: ", wasmModule.fibonacci(1));
-        console.log("wasmModule: ", wasmModule.greet2("aaa"));
-        const result = wasmModule.greet2("aaa");
-        wasmModule.greet("bbb");
-        setGreetResult(result);
+        await init();
+        console.log("aaa: ", greet2("aaa"));
+        // const wasmModule = await import("@kdh8281/wasm-lib");
+        // await wasmModule.default();
+        // setWasm(wasmModule);
+        // console.log("wasmModule: ", wasmModule);
+        // console.log("wasmModule: ", wasmModule.fibonacci(1));
+        // console.log("wasmModule: ", wasmModule.greet2("aaa"));
+        // const result = wasmModule.greet2("aaa");
+        // wasmModule.greet("bbb");
+        // setGreetResult(result);
       } catch (error) {
         console.error("Error loading wasm module:", error);
       }
